@@ -1,0 +1,15 @@
+## Active Directory User Creation
+
+# Import Active Directory Module
+Import-Module ActiveDirectory
+
+# User Information
+$username = "newuser"
+$password = ConvertTo-SecureString "P@ssw0rd!" -AsPlainText -Force
+$UserOU = "OU=Users,DC=example,DC=com"
+$firstName = "New"
+$lastName = "User"
+$email = "newuser@example.com"
+
+# Create the user
+New-ADUser -SamAccountName $username -UserPrincipalName "$username@example.com" -Name "$firstName $lastName" -GivenName $firstName -Surname $lastName -Enabled $true -DisplayName "$firstName $lastName" -Path $UserOU -AccountPassword $password -EmailAddress $email
